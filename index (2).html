@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Pillu! ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --pink: #ff4d6d; --dark-pink: #c9184a; --soft-pink: #ffccd5; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; font-family: 'Quicksand', sans-serif; background: #fff0f3; overflow-x: hidden; }
+
+        /* THE GIFT PAGE */
+        #landing-page {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle, #fff0f3 0%, #ffccd5 100%);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 10000; cursor: pointer; transition: 1.2s ease;
+        }
+
+        .gift-box { font-size: 140px; animation: shake 1.5s infinite; filter: drop-shadow(0 10px 20px rgba(255, 77, 109, 0.3)); }
+        @keyframes shake { 0%, 100% { transform: scale(1) rotate(0); } 50% { transform: scale(1.1) rotate(5deg); } }
+
+        /* MAIN CONTENT */
+        #main-content {
+            display: none; opacity: 0;
+            background: linear-gradient(135deg, #fff0f3 0%, #ffccd5 100%);
+            min-height: 100vh; text-align: center; padding-bottom: 50px;
+        }
+
+        .heart { position: fixed; color: var(--pink); font-size: 20px; z-index: 1; animation: float 6s linear infinite; pointer-events: none; }
+        @keyframes float { 0% { transform: translateY(105vh) scale(0.5); opacity: 0; } 50% { opacity: 0.8; } 100% { transform: translateY(-10vh) scale(1.2); opacity: 0; } }
+
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(20px); border-radius: 50px; 
+            padding: 40px 20px; margin: 20px auto; max-width: 90%; width: 600px; 
+            box-shadow: 0 30px 60px rgba(201, 24, 74, 0.15); border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        /* MEMORY POLAROIDS */
+        .memory-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 30px 0; }
+        .polaroid { 
+            background: white; padding: 10px 10px 30px 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+            width: 160px; transform: rotate(-3deg); transition: 0.3s;
+        }
+        .polaroid:hover { transform: scale(1.1) rotate(0); z-index: 10; }
+        .polaroid img { width: 100%; height: 160px; object-fit: cover; }
+        .polaroid p { font-family: 'Dancing Script', cursive; margin: 10px 0 0 0; color: #444; }
+
+        /* VIRTUAL CAKE */
+        .cake-section { margin: 30px 0; cursor: pointer; }
+        .cake { font-size: 80px; transition: 0.5s; }
+        .cake:active { transform: scale(0.9); }
+
+        #secret-message { 
+            display: none; font-family: 'Dancing Script', cursive; font-size: 1.8rem; 
+            line-height: 1.6; color: var(--dark-pink); margin-top: 30px; text-align: left; padding: 15px; border-left: 5px solid var(--pink);
+        }
+
+        input { border: none; border-bottom: 2px solid var(--pink); background: transparent; padding: 10px; width: 180px; text-align: center; outline: none; font-size: 1.2rem; }
+        .btn { background: var(--pink); color: white; border: none; padding: 15px 40px; border-radius: 50px; cursor: pointer; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body onclick="openGift()">
+
+    <audio id="mySong" loop><source src="perfect.mp3" type="audio/mpeg"></audio>
+
+    <div id="landing-page">
+        <div class="gift-box">🎁</div>
+        <p style="font-family: 'Dancing Script'; font-size: 2rem; color: var(--dark-pink); margin-top: 20px;">For My Dearest Pillu...</p>
+        <p style="color: #777; letter-spacing: 2px;">(Tap to Open)</p>
+    </div>
+
+    <div id="main-content">
+        <div id="hearts-container"></div>
+        
+        <h1 style="font-family: 'Dancing Script'; font-size: 5rem; color: var(--dark-pink); margin-top: 50px; margin-bottom: 0;">Happy Birthday</h1>
+        <h2 style="font-family: 'Quicksand'; font-weight: 300; letter-spacing: 8px; color: var(--dark-pink);">MY PILLU ❤️</h2>
+
+        <div class="glass-card">
+            <div class="cake-section" onclick="event.stopPropagation(); blowCandle()">
+                <div id="cake-emoji" class="cake">🎂</div>
+                <p id="cake-text" style="font-size: 0.9rem; color: var(--pink);">Blow out the candle! (Tap the cake)</p>
+            </div>
+
+            <div class="memory-grid">
+                <div class="polaroid"><img src="https://lh3.googleusercontent.com/u/0/d/1fq9uanDRhMhe69rNqLZ3bCFgGuaE38hm"><p>Perfect!! ✨</p></div>
+                <div class="polaroid" style="transform: rotate(4deg);"><img src="https://lh3.googleusercontent.com/u/0/d/1U4ooxfqmLWxuSmQfmVMgXq0My-YUFBeC"><p>That Smile 🌍</p></div>
+                <div class="polaroid" style="transform: rotate(-2deg);"><img src="https://lh3.googleusercontent.com/u/0/d/1eT7LxMNmFQMTJc7z1l6QJZypo0Jq1eag"><p>Forever ❤️</p></div>
+            </div>
+
+            <div id="unlock-zone">
+                <p>Enter our secret code (7338) to see my heart:</p>
+                <input type="text" id="password" placeholder="????" onclick="event.stopPropagation()">
+                <br>
+                <button class="btn" onclick="event.stopPropagation(); revealSecret()">Unlock ✨</button>
+            </div>
+
+            <div id="secret-message"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        let isOpened = false;
+
+        function openGift() {
+            if (isOpened) return;
+            isOpened = true;
+            document.getElementById("mySong").play().catch(() => {});
+            
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            
+            document.getElementById('landing-page').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('landing-page').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                setTimeout(() => { document.getElementById('main-content').style.opacity = '1'; }, 50);
+                startHearts();
+            }, 1000);
+        }
+
+        function startHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = Math.random() > 0.3 ? '❤️' : '🎈';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                document.getElementById('hearts-container').appendChild(heart);
+                setTimeout(() => heart.remove(), 6000);
+            }, 600);
+        }
+
+        function blowCandle() {
+            document.getElementById('cake-emoji').innerHTML = '🍰';
+            document.getElementById('cake-text').innerHTML = 'Make a wish! I love you! ❤️';
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.5 } });
+        }
+
+        function revealSecret() {
+            const pw = document.getElementById("password").value;
+            if (pw === "7338") {
+                document.getElementById("unlock-zone").style.display = "none";
+                document.getElementById("secret-message").style.display = "block";
+                
+                const text = "Dearest Pillu,\n\nI found a love, to carry more than just my secrets... and from the moment we met on 7th September 2024, my world got a lot more colorful. \n\nYou look perfect tonight (and every night). Happy Birthday, my love! I hope this year is as beautiful as you are.\n\nCome soon dear , can't wait more to hug you! ❤️";
+                let i = 0;
+                function type() {
+                    if (i < text.length) {
+                        document.getElementById("secret-message").innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, 50);
+                    }
+                }
+                type();
+                confetti({ particleCount: 200, spread: 100, origin: { y: 0.8 } });
+            } else {
+                alert("Only the secret code opens this... ❤️");
+            }
+        }
+    </script>
+</body>
+</html>
